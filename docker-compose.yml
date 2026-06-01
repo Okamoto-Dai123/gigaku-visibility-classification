@@ -1,0 +1,26 @@
+# GIGAKU Visibility Classification - Docker Compose
+# 使い方: docker compose up --build
+# ブラウザで http://localhost:8888 にアクセス
+
+services:
+  gigaku-ml:
+    build: .
+    container_name: gigaku-visibility
+    ports:
+      - "8888:8888"
+    volumes:
+      # ホスト側のデータフォルダをマウント（大容量画像はGit管理外）
+      - ./data:/workspace/data
+      - ./models:/workspace/models
+      - ./src:/workspace/src
+      - ./notebooks:/workspace/notebooks
+    environment:
+      - TF_CPP_MIN_LOG_LEVEL=2
+    # GPU使用時はコメントを外す
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
