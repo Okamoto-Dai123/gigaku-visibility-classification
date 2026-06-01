@@ -16,14 +16,9 @@ from sklearn.metrics import classification_report, confusion_matrix
 
 print("ライブラリのインポートが完了しました。")
 
-try:
-    from google.colab import drive
-    drive.mount('/content/drive')
-    DATASET_PATH = "/content/drive/MyDrive/ImageDataSet/"
-    print(f"Google Driveのマウントに成功しました。")
-    print(f"データセットパス: {DATASET_PATH}")
-except Exception as e:
-    print(f"Google Driveのマウント中にエラーが発生しました: {e}")
+# ローカルのデータセットパスを指定 (DL.pyと同じ階層の dataset フォルダを想定)
+DATASET_PATH = "./data/" 
+print(f"データセットパス: {DATASET_PATH}")
 
 # 画像のパスとラベルをDataFrameに格納
 filepaths = []
